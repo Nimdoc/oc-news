@@ -251,6 +251,8 @@ return [
         'tags_slug_description' => 'Look up the tag using the supplied slug value. This property is used by the default component partial for marking the currently active tag.',
         'tags_page_title' => 'Tag page',
         'tags_page_description' => 'Name of the tag page file for the tag links. This property is used by the default component partial.',
+        'tag_query_name' => 'Tag Query Name',
+        'tag_query_name_description' => 'Enter a name for the tag query parameter in the URL.',
         'links' => 'Links'
     ],
     'sorting' => [

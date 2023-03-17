@@ -265,6 +265,7 @@ class Posts extends Model
             'status'   => 1,
             'featured' => 0,
             'isTrans'  => false,
+            'tag'      => '',
             'category' => null
         ], $options));
 
@@ -299,6 +300,16 @@ class Posts extends Model
 
                 $query->orderBy($sortField, $sortDirection);
             }
+        }
+
+        /*
+         * Tag filter
+         */
+        if ($tag !== null && is_string($tag)) {
+            $query->where('tags', 'LIKE', '%,'.$tag.',%')
+                  ->orWhere('tags', 'LIKE', $tag.',%')
+                  ->orWhere('tags', 'LIKE', '%,'.$tag)
+                  ->orWhere('tags', 'LIKE', $tag);
         }
 
         /*

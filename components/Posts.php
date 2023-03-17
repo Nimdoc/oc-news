@@ -95,6 +95,12 @@ class Posts extends ComponentBase
                 'type'        => 'checkbox',
                 'default'     => false
             ],
+            'tagQueryName' => [
+                'title'       => 'indikator.news::lang.settings.tag_query_name',
+                'description' => 'indikator.news::lang.settings.tag_query_name_description',
+                'type'        => 'string',
+                'default'     => 'tag'
+            ],
             'postPage' => [
                 'title'       => 'indikator.news::lang.settings.post_title',
                 'description' => 'indikator.news::lang.settings.post_description',
@@ -167,6 +173,7 @@ class Posts extends ComponentBase
             'featured' => $this->property('postFeatured'),
             'search'   => $this->searchFilter,
             'isTrans'  => $this->property('postTranslated'),
+            'tag'      => input($this->property('tagQueryName')),
             'category' => $category
         ]);
 
