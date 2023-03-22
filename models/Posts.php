@@ -305,7 +305,7 @@ class Posts extends Model
         /*
          * Tag filter
          */
-        if ($tag !== null && is_string($tag)) {
+        if (!empty($tag) && is_string($tag)) {
             $query->where('tags', 'LIKE', '%,'.$tag.',%')
                   ->orWhere('tags', 'LIKE', $tag.',%')
                   ->orWhere('tags', 'LIKE', '%,'.$tag)
