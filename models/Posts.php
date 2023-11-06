@@ -190,6 +190,13 @@ class Posts extends Model
     }
     // Next and previous post
 
+    public function scopeHasTag($query, $tag) {
+        $query->where('tags', 'LIKE', '%,'.$tag.',%')
+                ->orWhere('tags', 'LIKE', $tag.',%')
+                ->orWhere('tags', 'LIKE', '%,'.$tag)
+                ->orWhere('tags', 'LIKE', $tag);
+    }
+
     /**
      * Apply a constraint to the query to find the nearest sibling
      *
@@ -305,11 +312,8 @@ class Posts extends Model
         /*
          * Tag filter
          */
-        if ($tag !== null && is_string($tag)) {
-            $query->where('tags', 'LIKE', '%,'.$tag.',%')
-                  ->orWhere('tags', 'LIKE', $tag.',%')
-                  ->orWhere('tags', 'LIKE', '%,'.$tag)
-                  ->orWhere('tags', 'LIKE', $tag);
+        if (!empty($tag) && is_string($tag)) {
+            $query->hasTag($tag);
         }
 
         /*
